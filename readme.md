@@ -1,0 +1,2 @@
+## Запуск
+Запустите `llama-cpp-linux/install.sh` чтобы скачать и собрать llama.cpp. В папке с собраной llama.cpp перейдите по пути `build/bin`, в ней храняться исполняемые файлы llama.cpp. Для наших целей необходимо запустить `llama-server -m <model> --port <port>`, где `<model>` - путь к `.gguf` файлу LLM, а `<port>` - порт который сервер начнёт прослушивать. (Рекомендуется использовать [Qwen3-4B-Instruct](https://huggingface.co/marcelone/Qwen3-4B-Instruct-2507-gguf)).
