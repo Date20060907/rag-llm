@@ -2,3 +2,6 @@
 !.gitignore
 build/
 llama.cpp
+_deps
+CMakeFiles
+tools
