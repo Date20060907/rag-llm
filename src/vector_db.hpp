@@ -38,6 +38,7 @@ public:
 
     std::string getMetadata(uint32_t id) const;
     bool updateMetadata(uint32_t id, const std::string& new_metadata);
+    const std::string& getFilename() const;
 
 private:
     float cosineSimilarity(const std::vector<float>& a, const std::vector<float>& b) const;

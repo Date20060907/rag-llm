@@ -266,3 +266,6 @@ bool VectorDatabase::updateMetadata(uint32_t id, const std::string &new_metadata
     }
     return false;
 }
+    const std::string& VectorDatabase::getFilename() const{
+        return filename;
+    }

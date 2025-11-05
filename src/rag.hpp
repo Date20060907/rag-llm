@@ -51,6 +51,13 @@ public:
    */
     void createDatabase(std::string filename, std::vector<std::string> files);
 
+    /**
+     * @brief Получить массив std::vector<VectorDatabase>
+     *
+     * @return std::vector<VectorDatabase>
+     */
+    const std::vector<VectorDatabase> &get_vector_database_list() const;
+
 private:
     /**
    * @brief Заполнение vector_database_list.

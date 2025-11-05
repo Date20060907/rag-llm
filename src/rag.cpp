@@ -6,6 +6,7 @@
 #include <stdexcept>
 #include <string>
 #include <utility>
+#include <vector>
 
 #define BATCH 1024
 #define DEBUG
@@ -34,7 +35,7 @@ std::string Rag::request(std::string qeustion, std::vector<int> database_id_list
     auto embeded_question = this->embedText(qeustion);
     for (auto db_id : database_id_list)
     {
-        auto temp = this->vector_database_list[db_id].findTopK(embeded_question, 5, 0.2);
+        auto temp = this->vector_database_list[db_id].findTopK(embeded_question, 3, 0.7);
         for (auto id : temp)
         {
 #ifdef DEBUG
@@ -73,48 +74,60 @@ std::string Rag::request(std::string qeustion, std::vector<int> database_id_list
     return "";
 }
 
-//Навайбкодило
 void Rag::addDocument(std::string filename, int batch_size, int database_id)
 {
-    std::ifstream input_file(filename, std::ios::binary);
-
-#ifdef DEBUG
-    std::cout << input_file.is_open() << std::endl;
-#endif // DEBUG
-    if (!input_file)
+    std::ifstream file(filename, std::ios::binary);
+    if (!file.is_open())
     {
-#ifdef DEBUG
-        std::cout << "ERROR WHILE READING A FILE!" << '\n';
-#endif // DEBUG
         throw std::runtime_error("Cannot open file: " + filename);
     }
+    std::string content((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+    file.close();
+    std::vector<std::string> chunks;
+    size_t pos = 0;
 
-    // Получаем базовое имя файла без пути (опционально, можно оставить полный путь)
-    std::string base_name = filename;
-    size_t last_slash = filename.find_last_of("/\\");
-    if (last_slash != std::string::npos)
+    while (pos < content.size())
     {
-        base_name = filename.substr(last_slash + 1);
-    }
+        size_t start = pos;
+        int char_count = 0;
 
-    std::vector<char> buffer(batch_size);
-    int batch_number = 0;
-
-    while (input_file)
-    {
-        input_file.read(buffer.data(), batch_size);
-        std::streamsize bytes_read = input_file.gcount();
-
-        if (bytes_read == 0)
+        // Считаем символы, учитывая длину UTF-8
+        while (pos < content.size() && char_count < batch_size)
         {
-            break;
+            auto c = static_cast<unsigned char>(content[pos]);
+            if ((c & 0x80) == 0)
+            { // 1 байт
+                pos += 1;
+            }
+            else if ((c & 0xE0) == 0xC0)
+            { // 2 байта
+                pos += 2;
+            }
+            else if ((c & 0xF0) == 0xE0)
+            { // 3 байта
+                pos += 3;
+            }
+            else if ((c & 0xF8) == 0xF0)
+            { // 4 байта
+                pos += 4;
+            }
+            else
+            {
+                // Некорректный UTF-8
+                throw std::runtime_error("Invalid UTF-8 sequence");
+            }
+            ++char_count;
         }
-        this->vector_database_list[database_id].addEmbedding(this->embedText(buffer.data()), buffer.data());
 
-        ++batch_number;
+        chunks.push_back(content.substr(start, pos - start));
     }
 
-    input_file.close();
+    // Теперь отправляем каждый чанк в базу данных
+    for (const auto &chunk : chunks)
+    {
+        auto embeding = embedText(chunk);
+        vector_database_list[database_id].addEmbedding(embeding, chunk);
+    }
 }
 
 void Rag::createDatabase(std::string filename, std::vector<std::string> files)
@@ -181,4 +194,8 @@ const std::vector<float> Rag::embedText(std::string text)
                                  ". Expected: " + std::to_string(this->dim));
     }
     return m;
+}
+
+const std::vector<VectorDatabase>& Rag::get_vector_database_list() const{
+    return vector_database_list;
 }

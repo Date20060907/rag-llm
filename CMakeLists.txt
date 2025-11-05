@@ -9,13 +9,18 @@ file(GLOB SOURCES "src/*.cpp")
 
 include_directories(include)
 
-
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 include(FetchContent)
+FetchContent_Declare(
+    pybind11
+    GIT_REPOSITORY https://github.com/pybind/pybind11.git
+    GIT_TAG        v2.12.0
+)
 FetchContent_Declare(cpr GIT_REPOSITORY https://github.com/libcpr/cpr.git)
 FetchContent_MakeAvailable(cpr)
 
-add_executable(myapp ${SOURCES})
+pybind11_add_module(myapp ${SOURCES})
 
 file(GLOB HEADERS "include/*.h" "include/*.hpp")
 target_sources(myapp PRIVATE ${HEADERS})
