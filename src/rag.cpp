@@ -28,33 +28,47 @@ Rag::Rag(/*int dim*/)
     initDatabaseList();
 }
 
-std::string Rag::request(std::string qeustion, std::vector<int> database_id_list)
+std::string Rag::request(std::string question,
+                         std::vector<int> database_id_list,
+                         int n_predict,
+                         float temperature,
+                         int top_k,
+                         int rag_k,
+                         float rag_sim_threshold)
 {
-    std::string context = "Контекст:\n";
+    std::string context = "Контекст из базы данных для использования в ответе:\n";
 
-    auto embeded_question = this->embedText(qeustion);
+    auto embeded_question = this->embedText(question);
+    std::cout << database_id_list.size() << std::endl;
     for (auto db_id : database_id_list)
     {
-        auto temp = this->vector_database_list[db_id].findTopK(embeded_question, 3, 0.7);
+        std::cout << "\nSelected ID" << db_id << std::endl;
+        auto temp = this->vector_database_list[db_id].findTopK(embeded_question, rag_k, rag_sim_threshold);
+        std::cout << temp.size() << std::endl;
         for (auto id : temp)
         {
 #ifdef DEBUG
             std::cout << id.second << std::endl;
+            std::cout << vector_database_list[db_id].getMetadata(id.first) << std::endl;
 #endif // DEBUG
             context += vector_database_list[db_id].getMetadata(id.first) + "\n";
         }
     }
 
 #ifdef DEBUG
-    std::cout << context + "Вопрос:\n" + qeustion << std::endl;
+    std::cout << context + "Запрос пользователя:\n" + question << std::endl;
 #endif // DEBUG
 
 
-    nlohmann::json payload = {{"prompt", context + "Вопрос:\n" + qeustion},
-                              {"n_predict", 500},
-                              {"temperature", 0.1},
-                              {"top_k", 5},
-                              {"stream", false}};
+    nlohmann::json payload = {
+        {"prompt",
+         "<|im_start|>system\n Ты - полезный AI-ассистент. Ответь на вопрос пользователя, используя ТОЛЬКО предоставленную информацию из базы знаний. Если в предоставленной информации нет достаточных данных для ответа, честно скажи об этом. Будь точным, кратким и используй только факты из контекста.\n<|im_end|>\n<|im_start|>user\n" + context + "Вопрос: " + question +
+             "Основываясь на предоставленной информации выше, дай точный и краткий ответ.\n<|im_end|>\n<|im_start|>assistant\n"},
+        {"n_predict", n_predict},
+        {"temperature", temperature},
+        {"top_k", top_k},
+        {"stream", false},
+        {"stop", {"<|im_end|>"}}};
 
     cpr::Response r =
         cpr::Post(model_address, cpr::Header{{"Content-Type", "application/json"}}, cpr::Body{payload.dump()});
@@ -130,7 +144,52 @@ void Rag::addDocument(std::string filename, int batch_size, int database_id)
     }
 }
 
-void Rag::createDatabase(std::string filename, std::vector<std::string> files)
+void Rag::addDocumentByParagraphs(std::string filename, int database_id)
+{
+    std::ifstream file(filename, std::ios::binary);
+    if (!file.is_open())
+    {
+        throw std::runtime_error("Cannot open file: " + filename);
+    }
+
+    std::string line;
+    std::string paragraph;
+
+    while (std::getline(file, line))
+    {
+        if (line.empty())
+        {
+            if (!paragraph.empty())
+            {
+                auto embedding = embedText(paragraph);
+#ifdef DEBUG
+                std::cout << paragraph << std::endl;
+#endif // DEBUG
+                vector_database_list[database_id].addEmbedding(embedding, paragraph);
+                paragraph.clear();
+            }
+        }
+        else
+        {
+            if (!paragraph.empty())
+            {
+                paragraph += "\n";
+            }
+            paragraph += line;
+        }
+    }
+
+    // Add the last paragraph if it exists
+    if (!paragraph.empty())
+    {
+        auto embedding = embedText(paragraph);
+        vector_database_list[database_id].addEmbedding(embedding, paragraph);
+    }
+
+    file.close();
+}
+
+void Rag::createDatabase(std::string filename, std::vector<std::string> files, generatorType type)
 {
     VectorDatabase new_db{filename, static_cast<size_t>(dim)};
     if (!new_db.initialize())
@@ -139,20 +198,41 @@ void Rag::createDatabase(std::string filename, std::vector<std::string> files)
     }
     this->vector_database_list.push_back(new_db);
 
+#ifdef DEBUG
+    std::cout << "\ntype: " << type << std::endl;
+#endif // DEBUG
+
     for (auto file : files)
     {
-        this->addDocument(file, BATCH, static_cast<int>(this->vector_database_list.size() - 1));
+        switch (type)
+        {
+        case generatorType::chunk:
+            this->addDocument(file, BATCH, static_cast<int>(this->vector_database_list.size() - 1));
+            break;
+        case generatorType::paragraphs:
+            this->addDocumentByParagraphs(file, static_cast<int>(this->vector_database_list.size() - 1));
+            break;
+        default:
+            break;
+        }
     }
 }
 
 void Rag::initDatabaseList()
 {
-    for (const auto &entry : std::filesystem::directory_iterator())
+    const std::string db_path = "./db";
+    if (!std::filesystem::exists(db_path) || !std::filesystem::is_directory(db_path))
+    {
+        std::cerr << "Directory ./db does not exist or is not a directory." << std::endl;
+        return;
+    }
+    for (const auto &entry : std::filesystem::directory_iterator(db_path))
     {
         if (entry.is_regular_file())
         {
+            std::cout << entry.path() << std::endl;
             vector_database_list.emplace_back(entry.path(), dim);
-            if (!vector_database_list.end()->initialize())
+            if (!vector_database_list.back().initialize())
             {
                 vector_database_list.pop_back();
             }
@@ -196,6 +276,7 @@ const std::vector<float> Rag::embedText(std::string text)
     return m;
 }
 
-const std::vector<VectorDatabase>& Rag::get_vector_database_list() const{
+const std::vector<VectorDatabase> &Rag::get_vector_database_list() const
+{
     return vector_database_list;
 }

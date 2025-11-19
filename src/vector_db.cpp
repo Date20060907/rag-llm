@@ -196,7 +196,7 @@ bool VectorDatabase::save()
 
 bool VectorDatabase::load()
 {
-    std::ifstream file("./db/" + filename, std::ios::binary);
+    std::ifstream file(filename, std::ios::binary);
     if (!file)
     {
         return false;

@@ -17,6 +17,7 @@ FetchContent_Declare(
     GIT_REPOSITORY https://github.com/pybind/pybind11.git
     GIT_TAG        v2.12.0
 )
+FetchContent_MakeAvailable(pybind11)
 FetchContent_Declare(cpr GIT_REPOSITORY https://github.com/libcpr/cpr.git)
 FetchContent_MakeAvailable(cpr)
 
