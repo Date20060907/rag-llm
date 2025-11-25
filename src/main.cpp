@@ -109,10 +109,10 @@ PYBIND11_MODULE(myapp, m)
     pybind11::enum_<generatorType>(m, "GeneratorType")
         .value("chunk", generatorType::chunk)
         .value("paragraphs", generatorType::paragraphs)
-        .export_values(); // Позволяет использовать значения напрямую как GeneratorType.chunk
+        .export_values();
 
     pybind11::class_<Rag>(m, "Rag")
-        .def(pybind11::init<>()) // конструктор по умолчанию
+        .def(pybind11::init<>())
         .def("createDatabase", &Rag::createDatabase)
         .def("request", &Rag::request)
         .def("get_vector_database_list", &Rag::get_vector_database_list);

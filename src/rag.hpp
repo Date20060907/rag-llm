@@ -4,8 +4,8 @@
 #include <string>
 #include <vector>
 
-const static cpr::Url model_address{"100.124.183.1:10101/completion"};
-const static cpr::Url embeder_address("100.124.183.1:10100/embedding");
+const static cpr::Url model_address{"http://100.124.183.1:10101/completion"};
+const static cpr::Url embeder_address("http://100.124.183.1:10100/embedding");
 
 enum generatorType{
     chunk,
@@ -19,6 +19,7 @@ class Rag
    * @brief Список хранящий все векторные БД.
    */
     std::vector<VectorDatabase> vector_database_list;
+
     int dim = 0;
 
 public:

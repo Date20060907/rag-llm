@@ -1,49 +1,157 @@
 #ifndef VECTOR_DB_H
 #define VECTOR_DB_H
 
-#include <string>
-#include <vector>
 #include <cstdint>
+#include <string>
 #include <unordered_map>
+#include <vector>
 
-struct VectorRecord {
-    uint32_t id;
-    std::vector<float> embedding;
-    std::string metadata;
+
+/**
+ * @brief Структура для хранения векторной записи в базе данных.
+ *
+ * Содержит уникальный идентификатор, векторное представление (эмбеддинг)
+ * и дополнительные метаданные в виде строки.
+ */
+struct VectorRecord
+{
+    uint32_t id;                  ///< Уникальный идентификатор записи.
+    std::vector<float> embedding; ///< Векторное представление (эмбеддинг).
+    std::string metadata;         ///< Метаданные, ассоциированные с записью.
 };
 
-class VectorDatabase {
+/**
+ * @brief Класс, реализующий простую векторную базу данных с возможностью сохранения на диск.
+ *
+ * Поддерживает добавление эмбеддингов, поиск по схожести (косинусное расстояние),
+ * управление метаданными и загрузку/сохранение состояния в файл.
+ */
+class VectorDatabase
+{
 private:
-    std::string filename;
-    size_t dimension;
-    std::vector<VectorRecord> vectors;
-    bool modified;
-    std::unordered_map<uint32_t, size_t> id_to_index;
+    std::string filename;              ///< Имя файла для сохранения/загрузки базы данных.
+    size_t dimension;                  ///< Размерность векторов в базе (должна быть фиксированной).
+    std::vector<VectorRecord> vectors; ///< Хранилище всех векторных записей.
+    bool modified; ///< Флаг, указывающий, были ли внесены изменения с момента последней загрузки/сохранения.
+    std::unordered_map<uint32_t, size_t> id_to_index; ///< Карта для быстрого поиска индекса записи по её ID.
 
 public:
-    VectorDatabase(const std::string& db_filename, size_t dim);
+    /**
+     * @brief Конструктор базы данных.
+     *
+     * @param db_filename Имя файла для сохранения и загрузки данных.
+     * @param dim Ожидаемая размерность эмбеддингов.
+     */
+    VectorDatabase(const std::string &db_filename, size_t dim);
+
+    /**
+     * @brief Деструктор, автоматически сохраняет изменения при необходимости.
+     */
     ~VectorDatabase();
 
+    /**
+     * @brief Инициализирует базу данных: загружает данные с диска или создаёт новую, если файл отсутствует.
+     *
+     * @return true, если инициализация прошла успешно; false — в случае ошибки.
+     */
     bool initialize();
-    uint32_t addEmbedding(const std::vector<float>& embedding, const std::string& metadata = "");
 
-    std::vector<std::pair<uint32_t, float>> findTopK(
-        const std::vector<float>& query,
-        uint32_t k = 5,
-        float similarity_threshold = 0.0f);
+    /**
+     * @brief Добавляет новый эмбеддинг в базу данных.
+     *
+     * @param embedding Векторное представление (должно соответствовать размерности `dimension`).
+     * @param metadata Дополнительные метаданные (по умолчанию — пустая строка).
+     * @return Уникальный идентификатор добавленной записи.
+     */
+    uint32_t addEmbedding(const std::vector<float> &embedding, const std::string &metadata = "");
 
+    /**
+     * @brief Находит K наиболее похожих записей по отношению к заданному запросу (эмбеддингу).
+     *
+     * Поиск осуществляется на основе косинусного сходства. Результат сортируется по убыванию сходства.
+     *
+     * @param query Эмбеддинг запроса.
+     * @param k Количество возвращаемых записей (по умолчанию 5).
+     * @param similarity_threshold Порог сходства: возвращаются только записи с сходством ≥ порога (по умолчанию 0.0).
+     * @return Вектор пар: (ID записи, сходство). Сходство ∈ [–1, 1].
+     */
+    std::vector<std::pair<uint32_t, float>> findTopK(const std::vector<float> &query,
+                                                     uint32_t k = 5,
+                                                     float similarity_threshold = 0.0f);
+
+    /**
+     * @brief Сохраняет текущее состояние базы данных на диск.
+     *
+     * @return true, если сохранение прошло успешно; false — в случае ошибки.
+     */
     bool save();
-    bool load();
-    size_t size() const { return vectors.size(); }
 
+    /**
+     * @brief Загружает состояние базы данных с диска.
+     *
+     * @return true, если загрузка прошла успешно; false — в случае ошибки или отсутствия файла.
+     */
+    bool load();
+
+    /**
+     * @brief Возвращает текущее количество записей в базе.
+     *
+     * @return Количество векторов.
+     */
+    size_t size() const
+    {
+        return vectors.size();
+    }
+
+    /**
+     * @brief Получает метаданные для записи по её идентификатору.
+     *
+     * @param id Уникальный идентификатор записи.
+     * @return Строка с метаданными. Возвращает пустую строку, если ID не найден.
+     */
     std::string getMetadata(uint32_t id) const;
-    bool updateMetadata(uint32_t id, const std::string& new_metadata);
-    const std::string& getFilename() const;
+
+    /**
+     * @brief Обновляет метаданные для существующей записи.
+     *
+     * @param id Уникальный идентификатор записи.
+     * @param new_metadata Новые метаданные.
+     * @return true, если запись с таким ID существует и обновление выполнено; false — иначе.
+     */
+    bool updateMetadata(uint32_t id, const std::string &new_metadata);
+
+    /**
+     * @brief Возвращает имя файла, ассоциированного с базой данных.
+     *
+     * @return Константная ссылка на имя файла.
+     */
+    const std::string &getFilename() const;
 
 private:
-    float cosineSimilarity(const std::vector<float>& a, const std::vector<float>& b) const;
-    void normalizeVector(std::vector<float>& vector) const;
+    /**
+     * @brief Вычисляет косинусное сходство между двумя векторами.
+     *
+     * @param a Первый вектор.
+     * @param b Второй вектор.
+     * @return Значение косинусного сходства ∈ [–1, 1].
+     */
+    float cosineSimilarity(const std::vector<float> &a, const std::vector<float> &b) const;
+
+    /**
+     * @brief Нормализует вектор до единичной длины (L2-норма).
+     *
+     * Модифицирует переданный вектор на месте.
+     *
+     * @param vector Вектор для нормализации.
+     */
+    void normalizeVector(std::vector<float> &vector) const;
+
+    /**
+     * @brief Генерирует новый уникальный идентификатор для записи.
+     *
+     * @return Новый ID (гарантированно не повторяется в текущей сессии).
+     */
     uint32_t generateId() const;
 };
 
-#endif
+#endif // VECTOR_DB_H
