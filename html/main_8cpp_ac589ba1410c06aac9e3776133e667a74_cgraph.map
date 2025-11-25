@@ -1,0 +1,21 @@
+<map id="PYBIND11_MODULE" name="PYBIND11_MODULE">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,80,156,105"/>
+<area shape="rect" id="Node000002" href="$classRag.html#a54c0b13a10ff38d8af1ecee5ac9a5203" title="Создание новой БД." alt="" coords="234,5,393,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,77,203,39,232,31,233,37,205,45,110,82"/>
+<area shape="rect" id="Node000007" href="$classRag.html#aece2af4d6906663e8b37c1a79397708a" title="Получить массив std::vector&lt;VectorDatabase&gt;" alt="" coords="204,55,423,80"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="156,82,190,78,191,83,156,87"/>
+<area shape="rect" id="Node000008" href="$classVectorDatabase.html#a0bcd7bdb8ab91465dcb54547d3d17f39" title="Возвращает имя файла, ассоциированного с базой данных." alt="" coords="206,104,421,129"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="156,98,193,102,192,107,156,103"/>
+<area shape="rect" id="Node000009" href="$classRag.html#ad3e4bce26c08c787a3e8efc34d7eaeb8" title="Функция для запроса ответа у модели." alt="" coords="536,129,640,155"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="107,103,152,123,205,139,290,151,376,154,456,152,522,147,522,152,456,157,376,159,289,156,203,145,150,128,105,108"/>
+<area shape="rect" id="Node000003" href="$classRag.html#afdb151fafbc706f46a027f2d78d957f1" title="Добавляет документ в БД." alt="" coords="515,5,661,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="393,15,501,15,501,21,393,21"/>
+<area shape="rect" id="Node000006" href="$classRag.html#aefae1eb94e91507ef90624f388cb2fe8" title="Добавляет документ в БД, разбивая его на параграфы по пустым строкам." alt="" coords="471,55,705,80"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="385,28,504,50,503,55,384,33"/>
+<area shape="rect" id="Node000004" href="$classRag.html#adba361f189376b8749db2dc628a8f907" title="Получить вектор для куска текста." alt="" coords="753,55,880,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="653,28,706,39,748,49,747,54,705,45,651,33"/>
+<area shape="rect" id="Node000005" href="$rag_8hpp.html#a14ce4600825bb6db6f9d02270da22260" title=" " alt="" coords="928,55,1067,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="880,65,914,65,914,70,880,70"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="706,65,740,65,740,70,706,70"/>
+<area shape="poly" id="edge10_Node000009_Node000004" title=" " alt="" coords="627,127,763,82,765,87,629,132"/>
+</map>

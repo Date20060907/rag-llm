@@ -1,0 +1,20 @@
+<map id="embeder_address" name="embeder_address">
+<area shape="rect" id="Node000001" title=" " alt="" coords="868,131,1007,156"/>
+<area shape="rect" id="Node000002" href="$classRag.html#adba361f189376b8749db2dc628a8f907" title="Получить вектор для куска текста." alt="" coords="693,105,820,131"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="854,134,820,129,820,124,855,129"/>
+<area shape="rect" id="Node000007" href="$classRag.html#a96c872874d5f20ce9e45d4cd5bc2ce28" title="Проверка доступа к сервера модели и эмбедера. Инициализация баз" alt="" coords="488,156,568,181"/>
+<area shape="poly" id="edge10_Node000001_Node000007" title=" " alt="" coords="855,151,568,169,568,164,854,146"/>
+<area shape="rect" id="Node000003" href="$classRag.html#afdb151fafbc706f46a027f2d78d957f1" title="Добавляет документ в БД." alt="" coords="455,5,601,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="729,98,690,70,644,44,601,31,603,26,646,40,693,65,732,94"/>
+<area shape="rect" id="Node000006" href="$classRag.html#aefae1eb94e91507ef90624f388cb2fe8" title="Добавляет документ в БД, разбивая его на параграфы по пустым строкам." alt="" coords="411,55,645,80"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="684,105,585,83,587,77,686,100"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="686,136,569,163,568,157,684,131"/>
+<area shape="rect" id="Node000008" href="$classRag.html#ad3e4bce26c08c787a3e8efc34d7eaeb8" title="Функция для запроса ответа у модели." alt="" coords="231,104,335,129"/>
+<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="680,120,336,119,336,114,680,115"/>
+<area shape="rect" id="Node000004" href="$classRag.html#a54c0b13a10ff38d8af1ecee5ac9a5203" title="Создание новой БД." alt="" coords="204,55,363,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="451,36,348,57,347,52,450,31"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html#ac589ba1410c06aac9e3776133e667a74" title=" " alt="" coords="5,80,156,105"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="191,82,157,86,156,81,190,76"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="397,70,363,70,363,65,397,65"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="217,112,156,104,157,99,218,106"/>
+</map>

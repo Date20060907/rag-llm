@@ -1,0 +1,5 @@
+<map id="VectorDatabase::load" name="VectorDatabase::load">
+<area shape="rect" id="Node000001" title="Загружает состояние базы данных с диска." alt="" coords="243,5,404,31"/>
+<area shape="rect" id="Node000002" href="$classVectorDatabase.html#a60b70d956560f89374db36fea8ece75f" title="Инициализирует базу данных: загружает данные с диска или создаёт новую, если файл отсутствует." alt="" coords="5,5,195,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="229,21,195,21,195,15,229,15"/>
+</map>

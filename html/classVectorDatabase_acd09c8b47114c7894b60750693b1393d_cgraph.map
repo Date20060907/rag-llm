@@ -1,0 +1,7 @@
+<map id="VectorDatabase::findTopK" name="VectorDatabase::findTopK">
+<area shape="rect" id="Node000001" title="Находит K наиболее похожих записей по отношению к заданному запросу (эмбеддингу)." alt="" coords="5,35,193,60"/>
+<area shape="rect" id="Node000002" href="$classVectorDatabase.html#a31b68ebf3d959b7dd73cced2350ed338" title="Вычисляет косинусное сходство между двумя векторами." alt="" coords="241,5,480,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,34,234,30,234,35,194,39"/>
+<area shape="rect" id="Node000003" href="$classVectorDatabase.html#ad0ce1c472df3f55930a6b931784c0697" title="Нормализует вектор до единичной длины (L2&#45;норма)." alt="" coords="261,55,460,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="194,55,248,61,247,66,193,60"/>
+</map>

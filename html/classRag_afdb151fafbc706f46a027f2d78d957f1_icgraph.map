@@ -1,0 +1,7 @@
+<map id="Rag::addDocument" name="Rag::addDocument">
+<area shape="rect" id="Node000001" title="Добавляет документ в БД." alt="" coords="411,5,557,31"/>
+<area shape="rect" id="Node000002" href="$classRag.html#a54c0b13a10ff38d8af1ecee5ac9a5203" title="Создание новой БД." alt="" coords="204,5,363,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="397,21,363,21,363,15,397,15"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#ac589ba1410c06aac9e3776133e667a74" title=" " alt="" coords="5,5,156,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="190,21,156,21,156,15,190,15"/>
+</map>

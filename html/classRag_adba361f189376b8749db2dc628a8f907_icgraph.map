@@ -1,0 +1,17 @@
+<map id="Rag::embedText" name="Rag::embedText">
+<area shape="rect" id="Node000001" title="Получить вектор для куска текста." alt="" coords="693,80,820,105"/>
+<area shape="rect" id="Node000002" href="$classRag.html#afdb151fafbc706f46a027f2d78d957f1" title="Добавляет документ в БД." alt="" coords="455,5,601,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="719,76,644,45,601,33,602,28,646,39,721,71"/>
+<area shape="rect" id="Node000005" href="$classRag.html#aefae1eb94e91507ef90624f388cb2fe8" title="Добавляет документ в БД, разбивая его на параграфы по пустым строкам." alt="" coords="411,55,645,80"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="679,87,642,83,643,77,680,82"/>
+<area shape="rect" id="Node000006" href="$classRag.html#a96c872874d5f20ce9e45d4cd5bc2ce28" title="Проверка доступа к сервера модели и эмбедера. Инициализация баз" alt="" coords="488,104,568,129"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="680,103,568,115,568,110,679,98"/>
+<area shape="rect" id="Node000007" href="$classRag.html#ad3e4bce26c08c787a3e8efc34d7eaeb8" title="Функция для запроса ответа у модели." alt="" coords="231,129,335,155"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="723,115,687,132,646,145,561,157,476,160,398,157,335,151,336,146,399,151,476,154,561,151,645,139,685,127,721,110"/>
+<area shape="rect" id="Node000003" href="$classRag.html#a54c0b13a10ff38d8af1ecee5ac9a5203" title="Создание новой БД." alt="" coords="204,55,363,80"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="451,36,348,57,347,52,450,31"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#ac589ba1410c06aac9e3776133e667a74" title=" " alt="" coords="5,105,156,131"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="219,86,133,108,131,103,218,81"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="397,70,363,70,363,65,397,65"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="217,137,156,130,157,124,218,132"/>
+</map>

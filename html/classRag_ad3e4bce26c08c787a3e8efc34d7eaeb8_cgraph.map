@@ -1,0 +1,7 @@
+<map id="Rag::request" name="Rag::request">
+<area shape="rect" id="Node000001" title="Функция для запроса ответа у модели." alt="" coords="5,5,109,31"/>
+<area shape="rect" id="Node000002" href="$classRag.html#adba361f189376b8749db2dc628a8f907" title="Получить вектор для куска текста." alt="" coords="157,5,284,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,15,144,15,144,21,110,21"/>
+<area shape="rect" id="Node000003" href="$rag_8hpp.html#a14ce4600825bb6db6f9d02270da22260" title=" " alt="" coords="332,5,471,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="284,15,318,15,318,21,284,21"/>
+</map>

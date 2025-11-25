@@ -1,0 +1,10 @@
+<map id="Rag::Rag" name="Rag::Rag">
+<area shape="rect" id="Node000001" title="Проверка доступа к сервера модели и эмбедера. Инициализация баз" alt="" coords="5,31,85,56"/>
+<area shape="rect" id="Node000002" href="$rag_8hpp.html#a14ce4600825bb6db6f9d02270da22260" title=" " alt="" coords="343,5,481,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,28,133,15,235,8,329,9,329,15,235,13,134,21,82,33"/>
+<area shape="rect" id="Node000003" href="$classRag.html#adba361f189376b8749db2dc628a8f907" title="Получить вектор для куска текста." alt="" coords="151,31,277,56"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="86,41,137,41,137,46,86,46"/>
+<area shape="rect" id="Node000004" href="$classRag.html#aef9f13a47faa359a9489864c4b4ad330" title="Заполнение vector_database_list." alt="" coords="133,80,295,105"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="86,52,157,73,156,79,85,57"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="277,33,329,26,329,31,278,38"/>
+</map>

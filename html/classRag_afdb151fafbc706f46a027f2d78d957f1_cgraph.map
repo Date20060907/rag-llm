@@ -1,0 +1,7 @@
+<map id="Rag::addDocument" name="Rag::addDocument">
+<area shape="rect" id="Node000001" title="Добавляет документ в БД." alt="" coords="5,5,152,31"/>
+<area shape="rect" id="Node000002" href="$classRag.html#adba361f189376b8749db2dc628a8f907" title="Получить вектор для куска текста." alt="" coords="200,5,327,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,15,186,15,186,21,152,21"/>
+<area shape="rect" id="Node000003" href="$rag_8hpp.html#a14ce4600825bb6db6f9d02270da22260" title=" " alt="" coords="375,5,513,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="327,15,360,15,360,21,327,21"/>
+</map>

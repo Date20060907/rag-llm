@@ -1,0 +1,7 @@
+<map id="Rag::addDocumentByParagraphs" name="Rag::addDocumentByParagraphs">
+<area shape="rect" id="Node000001" title="Добавляет документ в БД, разбивая его на параграфы по пустым строкам." alt="" coords="5,5,240,31"/>
+<area shape="rect" id="Node000002" href="$classRag.html#adba361f189376b8749db2dc628a8f907" title="Получить вектор для куска текста." alt="" coords="288,5,415,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="240,15,274,15,274,21,240,21"/>
+<area shape="rect" id="Node000003" href="$rag_8hpp.html#a14ce4600825bb6db6f9d02270da22260" title=" " alt="" coords="463,5,601,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="415,15,448,15,448,21,415,21"/>
+</map>

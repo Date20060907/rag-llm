@@ -1,0 +1,7 @@
+<map id="VectorDatabase::normalizeVector" name="VectorDatabase::normalizeVector">
+<area shape="rect" id="Node000001" title="Нормализует вектор до единичной длины (L2&#45;норма)." alt="" coords="284,23,483,63"/>
+<area shape="rect" id="Node000002" href="$classVectorDatabase.html#addf9bb9bef3becb73dcc972193eb119b" title="Добавляет новый эмбеддинг в базу данных." alt="" coords="5,5,236,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="270,35,236,32,236,26,270,30"/>
+<area shape="rect" id="Node000003" href="$classVectorDatabase.html#acd09c8b47114c7894b60750693b1393d" title="Находит K наиболее похожих записей по отношению к заданному запросу (эмбеддингу)." alt="" coords="27,55,215,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="271,56,215,61,215,56,270,51"/>
+</map>

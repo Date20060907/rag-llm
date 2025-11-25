@@ -1,0 +1,5 @@
+<map id="Rag::initDatabaseList" name="Rag::initDatabaseList">
+<area shape="rect" id="Node000001" title="Заполнение vector_database_list." alt="" coords="133,5,295,31"/>
+<area shape="rect" id="Node000002" href="$classRag.html#a96c872874d5f20ce9e45d4cd5bc2ce28" title="Проверка доступа к сервера модели и эмбедера. Инициализация баз" alt="" coords="5,5,85,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,21,86,21,86,15,120,15"/>
+</map>
