@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Afina AI</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>Базы данных</h2>
+                <button id="settings-btn" class="settings-btn">⚙️</button>
+            </div>
+            <div id="database-list" class="database-list">
+                <!-- Database list will be populated here -->
+            </div>
+        </div>
+        <div class="chat-container">
+            <h1>Чат с Afina AI</h1>
+            <div id="chat-box" class="chat-box">
+                <!-- Сообщения будут появляться здесь -->
+            </div>
+            <form id="chat-form">
+                <input type="text" id="message-input" placeholder="Введите сообщение..." required>
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
+        <div class="upload-container">
+            <h2>Загрузка файлов</h2>
+            <div class="upload-form">
+                <div class="form-group">
+                    <label for="db-name">Название базы данных:</label>
+                    <input type="text" id="db-name" placeholder="Введите название..." required>
+                </div>
+                <div class="form-group">
+                    <label for="generator-type">Тип генератора:</label>
+                    <select id="generator-type" class="form-control">
+                        <option value="chunk">Chunk (фрагменты)</option>
+                        <option value="paragraphs">Paragraphs (абзацы)</option>
+                    </select>
+                </div>
+                <div id="drop-area" class="drop-area">
+                    <p>Перетащите сюда текстовые файлы</p>
+                    <p>или</p>
+                    <button id="browse-btn">Выбрать файлы</button>
+                    <input type="file" id="file-input" accept=".txt" multiple style="display: none;">
+                </div>
+                <button id="upload-btn" disabled>Загрузить файлы</button>
+                <div id="selected-files" class="selected-files"></div>
+            </div>
+            <div id="file-list" class="file-list"></div>
+        </div>
+    </div>
+    
+    <!-- Settings Panel -->
+    <div id="settings-overlay" class="settings-overlay">
+        <div class="settings-panel">
+            <div class="settings-header">
+                <h2>Настройки параметров</h2>
+                <span id="close-settings" class="close-btn">&times;</span>
+            </div>
+            <div class="settings-content">
+                <div class="form-group">
+                    <label for="n-predict">Количество предсказаний (n_predict):</label>
+                    <input type="number" id="n-predict" min="1" max="2048" value="512">
+                </div>
+                <div class="form-group">
+                    <label for="temperature">Температура (temperature):</label>
+                    <input type="number" id="temperature" min="0" max="2" step="0.1" value="0.7">
+                </div>
+                <div class="form-group">
+                    <label for="top-k">Top-K (top_k):</label>
+                    <input type="number" id="top-k" min="1" max="100" value="40">
+                </div>
+                <div class="settings-actions">
+                    <button id="reset-settings">Сбросить</button>
+                    <button id="save-settings">Сохранить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="static/script.js"></script>
+</body>
+</html>
