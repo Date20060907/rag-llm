@@ -1,0 +1,5 @@
+<map id="app.get_ai_response" name="app.get_ai_response">
+<area shape="rect" id="Node000001" title="Формирует ответ от искусственного интеллекта на основе пользовательского сообщения." alt="" coords="132,5,288,31"/>
+<area shape="rect" id="Node000002" href="$namespaceapp.html#a169352bce9f04b35c6b28f1776217add" title="Обработчик POST&#45;запроса для взаимодействия с чатом." alt="" coords="5,5,84,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,21,84,21,84,15,118,15"/>
+</map>
